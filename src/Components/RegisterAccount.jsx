@@ -26,7 +26,7 @@ const RegisterAccount = ({ handleInput }) => {
         onChange={event => setAmount(event.target.value)}
       />
       <br />
-      <button disabled={text === "" || amount === ""}>Submit</button>
+      <button disabled={!text || !amount || Number.isNaN(Number(amount))}>Submit</button>
     </form>
   );
 };
