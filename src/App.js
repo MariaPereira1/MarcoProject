@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { RegisterAccount, RegisterList } from "./Components";
+import RegisterAccount from "./Components/RegisterAccount";
+import RegisterList from "./Components/RegisterList";
 
 function App() {
   const [list, setList] = useState([]);

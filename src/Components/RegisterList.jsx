@@ -1,5 +1,5 @@
 import React from "react";
-import { RegisterItem } from "./";
+import RegisterItem from "./RegisterItem";
 
 const RegisterList = ({ list, handleRemove }) => {
   return (

@@ -26,7 +26,7 @@ const RegisterAccount = ({ handleInput }) => {
         onChange={event => setAmount(event.target.value)}
       />
       <br />
-      <button>Submit</button>
+      <button disabled={text === "" || amount === ""}>Submit</button>
     </form>
   );
 };
