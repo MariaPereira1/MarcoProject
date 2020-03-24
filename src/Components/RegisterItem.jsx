@@ -1,10 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-const RegisterItem = ({ text, amount }) => {
+const RegisterItem = ({ item, onDelete }) => {
   return (
-    <Fragment>
-      <b>Title:</b> {text} <b>Amount:</b> {amount}
-    </Fragment>
+    <li>
+      <b>Title:</b> <span>{item.text} </span>
+      <b>Amount:</b> <span>{item.amount} </span>
+      <button onClick={() => onDelete(item.id)}>x</button>
+    </li>
   );
 };
 

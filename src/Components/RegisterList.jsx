@@ -1,15 +1,14 @@
 import React from "react";
 import RegisterItem from "./RegisterItem";
 
-const RegisterList = ({ list, handleRemove }) => {
+const RegisterList = ({ list, onDelete }) => {
   return (
     <ul>
-      {list.map((e, index) => (
-        <div>
-          <RegisterItem text={e.text} amount={e.amount} />
-          <button onClick={() => handleRemove(index)}>X</button>
-        </div>
-      ))}
+      {list
+        .sort((a, b) => b.amount - a.amount)
+        .map(item => (
+          <RegisterItem key={item.id} item={item} onDelete={onDelete} />
+        ))}
     </ul>
   );
 };

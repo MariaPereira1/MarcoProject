@@ -2,34 +2,34 @@ import React, { useState } from "react";
 import RegisterAccount from "./Components/RegisterAccount";
 import RegisterList from "./Components/RegisterList";
 
+let nextId = 1;
+
 function App() {
   const [list, setList] = useState([]);
-  const [balance, setBalance] = useState(0);
 
   return (
     <div className="App">
-      <h3>Balance: {balance}</h3>
+      <Total list={list} />
       <RegisterAccount
-        handleInput={(text, amount) => {
-          setBalance(balance + Number(amount));
-
-          const newList = list.concat([{ text, amount }]);
-          newList.sort((a, b) => b.amount - a.amount);
-          setList(newList);
-        }}
+        addRegister={item =>
+          setList(registerList =>
+            registerList.concat([{ ...item, id: nextId++ }])
+          )
+        }
       />
       <RegisterList
         list={list}
-        handleRemove={index => {
-          setBalance(balance - Number(list[index].amount));
-
-          const newList = [...list];
-          newList.splice(index, 1);
-          setList(newList);
-        }}
+        onDelete={id =>
+          setList(registerList => registerList.filter(item => item.id !== id))
+        }
       />
     </div>
   );
+}
+
+function Total({ list }) {
+  const total = list.reduce((acc, { amount }) => acc + amount, 0);
+  return <div>Total: {total}</div>;
 }
 
 export default App;

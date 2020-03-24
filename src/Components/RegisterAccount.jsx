@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const RegisterAccount = ({ handleInput }) => {
+const RegisterAccount = ({ addRegister }) => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
 
@@ -8,25 +8,30 @@ const RegisterAccount = ({ handleInput }) => {
     <form
       onSubmit={event => {
         event.preventDefault();
-        handleInput(text, amount);
+        addRegister({ text, amount: Number(amount) });
         setText("");
         setAmount("");
       }}
     >
-      <span>Enter title</span>
-      <input
-        type="text"
-        value={text}
-        onChange={event => setText(event.target.value)}
-      />
-      <span>Enter amount</span>
-      <input
-        type="number"
-        value={amount}
-        onChange={event => setAmount(event.target.value)}
-      />
-      <br />
-      <button disabled={!text || !amount || Number.isNaN(Number(amount))}>Submit</button>
+      <label>
+        <span>Title: </span>
+        <input
+          type="text"
+          value={text}
+          onChange={event => setText(event.target.value)}
+        />
+      </label>
+      <label>
+        <span>Amount: </span>
+        <input
+          type="number"
+          value={amount}
+          onChange={event => setAmount(event.target.value)}
+        />
+      </label>
+      <button disabled={!text || !amount || Number.isNaN(Number(amount))}>
+        Add
+      </button>
     </form>
   );
 };
